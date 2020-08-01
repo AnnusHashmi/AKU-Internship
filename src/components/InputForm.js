@@ -22,6 +22,7 @@ class InputForm extends Component{
         }
     }
 
+
     handleInputChange = (e) => {
         let {name, value} = e.target;
         this.setState({[name] : value});
