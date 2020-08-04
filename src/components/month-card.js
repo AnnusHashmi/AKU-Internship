@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, Button, CardHeader, CardBody,
     CardTitle, CardText } from 'reactstrap';
-import Dummy from './dummy';
 import {withRouter} from 'react-router-dom';
 
 const MonthCard = (props) => {

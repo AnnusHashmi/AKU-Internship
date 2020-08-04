@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Jumbotron, Container  } from 'reactstrap'
+import { Button, Form, FormGroup, Label, Input, Jumbotron, Container  } from 'reactstrap'
 import './inputForm.css';
 import FirebaseDB from '../firebase';
 
