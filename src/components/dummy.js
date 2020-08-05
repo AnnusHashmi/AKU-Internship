@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Dummy = () => {
+const Dummy = (props) => {
     return(
         <div>
-            <h1>This is the dummy componeent to render</h1>
+            <h1>This is the {props.heading} componeent to render</h1>
         </div>
     )
 }

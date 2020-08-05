@@ -5,11 +5,12 @@ import FirebaseDB from '../firebase';
 import akuLogo from '../assets/akuLogo.png';
 import { Button } from 'reactstrap';
 import {withRouter} from 'react-router';
+import TableList from '../components/table/tableList'
 
 class HomePage extends Component{
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
     
         this.state = {
           records: []
@@ -30,8 +31,8 @@ class HomePage extends Component{
     render(){
 
         {
-            var newArrayOfObjects = Object.values(this.state.records);
-            console.log("this is the array" , newArrayOfObjects)
+            var arrayOfRecords = Object.values(this.state.records);
+           
         }
 
         return(
@@ -48,7 +49,7 @@ class HomePage extends Component{
                         <h5 className='statement'>A monthly report on the research progress</h5>
 
                         <div>
-                            <Button color="success" size="lg" block >Add Record</Button>
+                            <Button color="success" size="lg" block onClick={() => this.props.history.push("/inputdata")}>Add Record</Button>
                         </div>
 
                     </div>
@@ -56,34 +57,33 @@ class HomePage extends Component{
                     <div className='col-lg-9'>
                         <div className='row'>
                             <div className='col-lg-3'>
-                                <MonthCard month="January" onClick={() => console.log("this is january") } />
-                                <MonthCard month="May"/>
-                                <MonthCard month="September"/>
+                                <MonthCard month="January" records={arrayOfRecords} />
+                                <MonthCard month="May" records={arrayOfRecords}/>
+                                <MonthCard month="September" records={arrayOfRecords}/>
                             </div>
     
                             <div className='col-lg-3'>
-                                <MonthCard month="Febuary"/>
-                                <MonthCard month="June"/>
-                                <MonthCard month="Octuber"/>
+                                <MonthCard month="Febuary" records={arrayOfRecords}/>
+                                <MonthCard month="June" records={arrayOfRecords}/>
+                                <MonthCard month="Octuber" records={arrayOfRecords}/>
                             </div>
     
                             <div className='col-lg-3'>
-                                <MonthCard month="March"/>
-                                <MonthCard month="July"/>
-                                <MonthCard month="November"/>
+                                <MonthCard month="March" records={arrayOfRecords}/>
+                                <MonthCard month="July" records={arrayOfRecords}/>
+                                <MonthCard month="November"records={arrayOfRecords}/>
                             </div>
     
                             <div className='col-lg-3'>
-                                <MonthCard month="April"/>
-                                <MonthCard month="August"/>
-                                <MonthCard month="December"/>
+                                <MonthCard month="April" records={arrayOfRecords}/>
+                                <MonthCard month="August" records={arrayOfRecords}/>
+                                <MonthCard month="December" records={arrayOfRecords}/>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
-                
+
             </div>
         )    
     }
