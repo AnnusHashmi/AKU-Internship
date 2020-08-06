@@ -1,0 +1,18 @@
+header {
+  position: relative;
+  height: 300px;
+  background-image: linear-gradient(#00b359, green);
+  border-bottom-left-radius: 50% 30%;
+  border-bottom-right-radius: 50% 30%;
+}
+
+h1 {
+  margin: 0;
+  padding: 100px 0;
+  font: 44px;
+  text-align: center;
+}
+
+header h1 {
+  color: white;
+}

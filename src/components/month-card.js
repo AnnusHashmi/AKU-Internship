@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Card, Button, CardHeader, CardBody,
     CardTitle, CardText } from 'reactstrap';
 import {withRouter} from 'react-router-dom';
-import Dummy from '../components/dummy';
-import TableList from './table/tableList';
+import {Link} from 'react-router-dom';
+import '../components/table/tableList.css';
 
 class MonthCard extends Component{
     
@@ -15,7 +15,7 @@ class MonthCard extends Component{
     }
 
     handleOnClick = () => {
-        this.setState({showComponent : true});
+        this.setState({showComponent : !this.state.showComponent});
     }
     
     render(){
@@ -26,13 +26,18 @@ class MonthCard extends Component{
                 <Card>
                     <CardHeader> {this.props.month} </CardHeader>
                     <CardBody>
-                    <CardTitle>Special Title Treatment</CardTitle>
-                        <CardText><Button color="success" onClick={this.handleOnClick}>Click me to console</Button>
-                            {
-                                this.state.showComponent ?
-                                <TableList /> :
-                                null
-                            }
+        <CardTitle>Total numebr of Records this month : {filterRecords.length}</CardTitle>
+                        <CardText>
+
+                            <Button color="success">
+                                <Link to={{
+                                    pathname: `table`,
+                                    state: filterRecords
+                                }} style={{textDecoration:"none", color:"white"}}>
+                                    Show Records
+                                </Link>    
+                            </Button>
+    
                         </CardText>
                     </CardBody>
                     
