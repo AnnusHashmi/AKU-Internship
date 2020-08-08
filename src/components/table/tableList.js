@@ -1,9 +1,22 @@
-import React from 'react';
-import { Table } from 'reactstrap';
+import React, { Component } from 'react';
+import { Table, Label, Input } from 'reactstrap';
 import {withRouter} from 'react-router-dom'
 import './tableList.css';
 
-const TableList = (props) => {
+class TableList extends Component{
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+            searchName : ''
+        }
+    }
+
+    render() {
+        {console.log("this is the input: ", this.state.searchName);} 
+        
+        const filterName = this.props.location.state.filter(record => record.spName.toLowerCase().includes(this.state.searchName.toLocaleLowerCase()));
         return(
             <div>
 
@@ -14,6 +27,11 @@ const TableList = (props) => {
                         </section>
                         
                     </header>
+
+                <div className='col-lg-4'>     
+                    <Input name="searchName" placeholder="Enter Supervisor Name to Filter" onChange={e =>{this.setState({searchName : e.target.value})}}/>
+                </div>
+                    
                 </div>
 
                 <Table striped>
@@ -33,7 +51,7 @@ const TableList = (props) => {
     
                     <tbody>
                         {
-                            props.location.state.map((record) => {
+                            filterName.map((record) => {
                                 return(
                                     <tr>
                                         <td> {record.spName} </td>
@@ -51,7 +69,9 @@ const TableList = (props) => {
                 </Table>
             </div>
         )
-    
+
+    }
+            
 }
 
 export default withRouter(TableList);
