@@ -48,8 +48,8 @@ class HomePage extends Component{
 
                         <h5 className='statement'>A monthly report on the research progress</h5>
 
-                        <div>
-                            <Button color="success" size="lg" block onClick={() => this.props.history.push("/inputdata")}>Add Record</Button>
+                        <div className='bottom'>
+                            <Button color="success" size="lg" block className='bottom' onClick={() => this.props.history.push("/inputdata")}>Add Record</Button>
                         </div>
 
                     </div>

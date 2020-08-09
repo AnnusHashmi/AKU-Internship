@@ -9,14 +9,35 @@ class TableList extends Component{
         super(props);
 
         this.state = {
-            searchName : ''
+            searchName : '',
+            staffName : '',
+            studyName : '',
+
+            selectSearchName : false,
+            selectStaffName : false,
+            selectStudyName : false
         }
     }
 
     render() {
-        {console.log("this is the input: ", this.state.searchName);} 
+
+        let filteredArray = this.props.location.state
         
-        const filterName = this.props.location.state.filter(record => record.spName.toLowerCase().includes(this.state.searchName.toLocaleLowerCase()));
+        if(this.state.selectSearchName === true){
+            filteredArray = this.props.location.state.filter(record => record.spName.toLowerCase().includes(this.state.searchName.toLowerCase()));
+        }
+        else if(this.state.selectStaffName === true){
+             filteredArray = this.props.location.state.filter(record => record.staffName.toLowerCase().includes(this.state.staffName.toLowerCase()));
+        }
+        else if(this.state.selectStudyName === true){
+             filteredArray = this.props.location.state.filter(record => record.studyName.toLowerCase().includes(this.state.studyName.toLowerCase()));
+        }
+        
+        {console.log("this is the array to render: ", filteredArray)}
+
+        const handleChange = (e) => {
+            this.setState({[e.target.name] : e.target.value})
+        }
         return(
             <div>
 
@@ -28,9 +49,21 @@ class TableList extends Component{
                         
                     </header>
 
-                <div className='col-lg-4'>     
-                    <Input name="searchName" placeholder="Enter Supervisor Name to Filter" onChange={e =>{this.setState({searchName : e.target.value})}}/>
+                <div className='row'>
+                    <div className='col-lg-4'>     
+                        <Input className='input-gap' name="searchName" placeholder="Enter Supervisor Name to Filter" onChange={handleChange} onClick={()=>{this.setState({selectSearchName : true , selectStaffName: false , selectStudyName : false})}}/>
+                    </div>
+
+                    <div className='col-lg-4'>     
+                        <Input className='input-gap' name="staffName" placeholder="Enter Staff Name to Filter" onChange={handleChange} onClick={()=>{this.setState({selectStaffName : true , selectSearchName : false , selectStudyName : false })}}/>
+                    </div>
+
+                    <div className='col-lg-4'>     
+                        <Input className='input-gap' name="studyName" placeholder="Enter Topic Name to Filter" onChange={handleChange} onClick={()=>{this.setState({selectStudyName : true , selectStaffName : false, selectSearchName : false})}}/>
+                    </div>
                 </div>
+
+                
                     
                 </div>
 
@@ -51,7 +84,7 @@ class TableList extends Component{
     
                     <tbody>
                         {
-                            filterName.map((record) => {
+                            filteredArray.map((record) => {
                                 return(
                                     <tr>
                                         <td> {record.spName} </td>

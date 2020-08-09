@@ -16,3 +16,7 @@ h1 {
 header h1 {
   color: white;
 }
+.input-gap{
+  padding : 10% 3%;
+  margin: 10% 3%;
+}
