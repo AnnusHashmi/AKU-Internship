@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Label, Input } from 'reactstrap';
+import { Table, Input } from 'reactstrap';
 import {withRouter} from 'react-router-dom'
 import './tableList.css';
 

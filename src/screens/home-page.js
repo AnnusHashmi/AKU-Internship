@@ -5,8 +5,18 @@ import FirebaseDB from '../firebase';
 import akuLogo from '../assets/akuLogo.png';
 import { Button } from 'reactstrap';
 import {withRouter} from 'react-router';
-import TableList from '../components/table/tableList'
+import { useSpring, animated } from 'react-spring'
+import auth from '../components/auth';
 
+export const HeaderLine = (prop) => {
+    const props = useSpring({ number: prop.number, from: { number: 0 } })
+    return (
+        <div>
+           <h3 className='headerLiner'>Total number of records entered are : <animated.span >{props.number}</animated.span></h3> 
+        </div>
+        
+    )
+}
 class HomePage extends Component{
 
     constructor(props){
@@ -17,6 +27,8 @@ class HomePage extends Component{
       }
     }
 
+    
+    
     componentDidMount(){
         FirebaseDB.child('record').on('value' , snapshot => {
           if(snapshot.val() != null){
@@ -32,7 +44,6 @@ class HomePage extends Component{
 
         {
             var arrayOfRecords = Object.values(this.state.records);
-           
         }
 
         return(
@@ -50,12 +61,24 @@ class HomePage extends Component{
 
                         <div className='bottom'>
                             <Button color="success" size="lg" block className='bottom' onClick={() => this.props.history.push("/inputdata")}>Add Record</Button>
+                            <Button color='success' onClick={() => {auth.setLogout(() => {
+                                this.props.history.push("/");
+                            })}}>Logout</Button>
                         </div>
 
                     </div>
     
                     <div className='col-lg-9'>
+
+                        <div className=''>
+
+                        </div>
+
                         <div className='row'>
+                            <div className='container'>
+                                <HeaderLine number={arrayOfRecords.length}/>
+                           </div>
+
                             <div className='col-lg-3'>
                                 <MonthCard month="January" records={arrayOfRecords} />
                                 <MonthCard month="May" records={arrayOfRecords}/>

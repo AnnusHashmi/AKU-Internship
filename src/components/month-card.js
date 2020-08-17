@@ -1,50 +1,56 @@
-import React, { Component } from 'react';
+import React ,{ useState }  from 'react';
 import { Card, Button, CardHeader, CardBody,
     CardTitle, CardText } from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import '../components/table/tableList.css';
+import { useSpring , animated } from 'react-spring';
+import './monthCard.css';
 
-class MonthCard extends Component{
-    
-    constructor(props){
-        super(props)
-        this.state = {
-            showComponent : false
-        }
-    }
 
-    handleOnClick = () => {
-        this.setState({showComponent : !this.state.showComponent});
-    }
-    
-    render(){
-        const filterRecords = this.props.records.filter(record => record.month.toLowerCase().includes(this.props.month.toLocaleLowerCase()));
-        console.log("This is THE ARRAY: ", filterRecords);
-        return(
-            <div style={{paddingBottom: '20px', paddingTop: '20px'}}>
-                <Card>
-                    <CardHeader> {this.props.month} </CardHeader>
+const MonthCard = (prop) => {
+    const filterRecords = prop.records.filter(record => record.month.toLowerCase().includes(prop.month.toLocaleLowerCase()));
+
+    const [state, toggle] = useState(true)
+    const { x } = useSpring({ from: { x: 0 }, x: state ? 1 : 0, config: { duration: 1000 } })
+    return(
+            <animated.div
+            style={{paddingBottom: '20px', paddingTop: '20px'}}>
+                <Card className='card'>
+                    <CardHeader> {prop.month} </CardHeader>
                     <CardBody>
-        <CardTitle>Total numebr of Records this month : {filterRecords.length}</CardTitle>
+                <CardTitle>Total numebr of Records this month : {filterRecords.length}</CardTitle>
                         <CardText>
-
-                            <Button color="success">
-                                <Link to={{
-                                    pathname: `table`,
-                                    state: filterRecords
-                                }} style={{textDecoration:"none", color:"white"}}>
-                                    Show Records
-                                </Link>    
-                            </Button>
+                            <div onClick={() => toggle(!state)}>
+                                <animated.div
+                                style={{ 
+                                opacity: x.interpolate({ range: [0, 1], output: [0.3, 1] }),
+                                transform: x
+                                  .interpolate({
+                                    range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+                                    output: [1, 0.97, 0.9, 1.1, 0.9, 1.1, 1.03, 1]
+                                  })
+                                  .interpolate(x => `scale(${x})`)
+                              }}>
+                                    <Button color="success">
+                                        <Link to={{
+                                            pathname: `table`,
+                                            state: filterRecords
+                                        }} style={{textDecoration:"none", color:"white"}}>
+                                            Show Records
+                                        </Link>    
+                                    </Button>
+                                </animated.div>
+                            </div>
+                            
     
                         </CardText>
                     </CardBody>
                     
                 </Card>
-            </div>
-        )
-    }
+            </animated.div>
+    )
+        
 }
     
 export default withRouter(MonthCard);

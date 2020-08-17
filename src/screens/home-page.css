@@ -17,3 +17,10 @@
 .bottom{
     margin-top: 90%;
 }
+.headerLiner{
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+    padding : 5%
+}
