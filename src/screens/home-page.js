@@ -3,7 +3,7 @@ import MonthCard from '../components/month-card';
 import './home-page.css';
 import FirebaseDB from '../firebase';
 import akuLogo from '../assets/akuLogo.png';
-import { Button,Modal,ModalBody,ModalHeader,ModalFooter } from 'reactstrap';
+import { Button,Modal,ModalBody,ModalHeader,ModalFooter, Table} from 'reactstrap';
 import {withRouter} from 'react-router';
 import { useSpring, animated } from 'react-spring'
 import auth from '../components/auth';
@@ -25,10 +25,17 @@ class HomePage extends Component{
         this.state = {
           records: [],
           modal:true,
+          email : '',
+          modal : false,
+          date: new Date().toLocaleString()
+          
       }
     }
 
-    
+    handleInputChange = (e) => {
+        let {name, value} = e.target;
+        this.setState({[name] : value});
+    }
     
     componentDidMount(){
         FirebaseDB.child('record').on('value' , snapshot => {
@@ -38,7 +45,11 @@ class HomePage extends Component{
               records : snapshot.val()
             })
           }
-        })
+        });
+        
+      };
+      toggle = () => {
+          this.setState({modal : !this.state.modal})
       };
 
     render(){
@@ -46,7 +57,7 @@ class HomePage extends Component{
         {
             var arrayOfRecords = Object.values(this.state.records);
         }
-
+    
         return(
             <div>
                
@@ -71,12 +82,22 @@ class HomePage extends Component{
     
                     <div className='col-lg-9'>
 
-                        <div className='signOut'>
-                        <Button color='success' onClick={() => {auth.setLogout(() => {
-                                localStorage.removeItem('user')
-                                this.props.history.push("/");
-                            })}}>Logout</Button>
+                        <div className='header'>
+                            <div className='signOut'>
+                            <Button color='success' onClick={() => {auth.setLogout(() => {
+                                    localStorage.removeItem('user')
+                                    this.props.history.push("/");
+                                })}}>Logout</Button>
+                            </div>
+
+                            <div>
+                            <Button color='success' onClick={this.toggle}>View Log history</Button>
+
+                            </div>
                         </div>
+                        
+                        
+
 
                         <div className='row'>
                             <div className='container'>
@@ -111,16 +132,32 @@ class HomePage extends Component{
                 </div>
             </div>
 
-            <Modal isOpen={this.state.modal}>
-        <ModalHeader>Modal title</ModalHeader>
-        <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </ModalBody>
-        <ModalFooter>
-          {/* <Button color="primary" onClick={toggle}>Do Something</Button>{' '} */}
-          <Button color="secondary" onClick={()=>{this.setState({modal:false})}}>Cancel</Button>
-        </ModalFooter>
-      </Modal>
+            <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                <ModalHeader toggle={this.toggle}> Record entry history </ModalHeader>
+                    <ModalBody>
+                    <Table dark>
+                        <thead>
+                            <tr>
+                            <th>Email</th>
+                            <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {arrayOfRecords.map((record) => {
+                                return(
+                                    <div>
+                                        <td>{record.email}</td>           
+                                    </div>
+                                )                 
+                            })}
+                            <td>{this.state.date}</td>  
+                        </tbody>
+                    </Table>
+                    </ModalBody>
+                <ModalFooter>
+                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                </ModalFooter>
+            </Modal>
             </div>
         )    
     }

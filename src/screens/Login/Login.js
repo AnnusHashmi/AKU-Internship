@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import Logo from '../../assets/akuLogo.png'
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Form, FormGroup, Label, Button } from 'reactstrap'
+import {  Input, Form, FormGroup, Label, Button } from 'reactstrap'
 import './Login.css'
 import auth from '../../components/auth';
 import {withRouter} from 'react-router-dom'
+import FirebaseDB from '../../firebase';
 
 class Login extends Component {
 
@@ -12,20 +13,19 @@ class Login extends Component {
         this.state = {
             username : '',
             password : '',
-            actualUser : 'aku.oars',
-            actualPass : '123'
+            actualUser : 'aku',
+            actualPass : 'aku',
         }
     }
 
-    checkCreds = () => {
-        if(this.state.username == this.state.actualUser && this.state.password == this.state.actualPass){
-            auth.setLogin(() => {
-                localStorage.setItem("user",{username:this.state.actualUser, password:this.state.actualPass})
-                this.props.history.push("/home");
-              });
+        checkCreds = () => {
+            if(this.state.username == this.state.actualUser && this.state.password == this.state.actualPass){
+                auth.setLogin(() => {
+                    localStorage.setItem("user",{username:this.state.actualUser, password:this.state.actualPass})
+                    this.props.history.push("/home");
+                });
+                }
             }
-            console.log("this is fired");
-        }
     
         handleInputChange = (e) => {
             let {name, value} = e.target;
@@ -33,23 +33,33 @@ class Login extends Component {
         }
 
     render(){
+        console.log("this is the email: ", this.state.email);
         return(
             <div className='container user_card'>
                 <div className='marginTop '>
                     <div>
-                        <img src={Logo} width='100' />
+                        <img src={Logo} width='100' style={{marginLeft : 'auto' , marginRight : 'auto'}} />
                     </div>
-                    <FormGroup>
-                        <Label for="spName">Username</Label>
-                        <Input type="text" name="username" id="username" placeholder="Enter username" value={this.state.username} onChange={this.handleInputChange} />
-                    </FormGroup>
 
-                    <FormGroup>
-                        <Label for="staffName">Password</Label>
-                        <Input type="password" name="password" id="password" placeholder="Enter the password" value={this.state.password} onChange={this.handleInputChange}/>
-                    </FormGroup>   
+                    <div className='col-lg-6'>
 
-                    <Button color='success' size="lg" onClick={this.checkCreds}>Submit</Button> 
+                    
+                    <Form autoComplete="off">
+
+                        <FormGroup autoComplete="false">
+                            <Label for="spName">Username</Label>
+                            <Input type="text" name="username" id="username" placeholder="Enter username" value={this.state.username} onChange={this.handleInputChange} />
+                        </FormGroup>
+
+                        <FormGroup autoComplete={false}>
+                            <Label for="staffName">Password</Label>
+                            <Input type="password" name="password" id="password" placeholder="Enter the password" value={this.state.password} onChange={this.handleInputChange}/>
+                        </FormGroup>  
+                    </Form>
+                     
+
+                    <Button color='success' size="lg" onClick={this.checkCreds} type='submit'>Login</Button> 
+                    </div>
                 </div>
                 
             </div>

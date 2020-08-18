@@ -1,5 +1,7 @@
 .marginTop{
     margin-top: 10%;
+    justify-content: center;
+    margin-right: 5%;
 }
 .input{
     margin-top: 5%;

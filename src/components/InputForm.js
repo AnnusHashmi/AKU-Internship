@@ -17,7 +17,9 @@ class InputForm extends Component{
             endDate : '',
             completedTasks : '',
             plannedTasks : '', 
-            timeSpent : ''
+            timeSpent : '',
+            email : '',
+            
 
         }
     }
@@ -50,26 +52,31 @@ class InputForm extends Component{
                     </Jumbotron>
                 </div>
 
-                <Form onSubmit={this.hanleSubmit}>
-                    
+                <Form onSubmit={this.hanleSubmit} autoComplete="off">
+
+                <FormGroup autoComplete="false" style={{paddingBottom : "70px"}}>
+                    <Label for="spName">User entering the record: Enter your mail</Label>
+                    <Input type="email" name="email" id="email" placeholder="email" value={this.state.email} onChange={this.handleInputChange} />
+                </FormGroup>
+                    <h3 style={{paddingBottom : 20}}>Record entry</h3>
                     <FormGroup>
                         <Label for="spName">Supervisor Name</Label>
                         <Input type="text" name="spName" id="spName" placeholder="Enter the name" value={this.state.SPname} onChange={this.handleInputChange} />
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup autoComplete={false}>
                         <Label for="staffName">Staff Name</Label>
                         <Input type="text" name="staffName" id="staffName" placeholder="Enter the name" value={this.state.staffName} onChange={this.handleInputChange}/>
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup autoComplete={false}>
                         <Label for="studyName">Study Name</Label>
                         <Input type="text" name="studyName" id="studyName" placeholder="Enter the study name" value={this.state.studyName} onChange={this.handleInputChange}/>
                     </FormGroup>
                     <div className='row'>
-                    <FormGroup className='col-lg-3'>
+                    <FormGroup className='col-lg-3' autoComplete={false}>
                         <Label for="startDate">Start Date</Label>
                         <Input type="date" name="startDate" id="startDate" placeholder="Date when the study started" value={this.state.startDate} onChange={this.handleInputChange}/>
                     </FormGroup>
-                    <FormGroup className='col-lg-6'>
+                    <FormGroup className='col-lg-6' autoComplete={false}>
                         <Label for="exampleSelect">Select Month</Label>
                         <Input type="select" name="month" id="month" value={this.state.month} onChange={this.handleInputChange}>
                         <option>January</option>
@@ -86,22 +93,22 @@ class InputForm extends Component{
                         <option>December</option>
                         </Input>
                     </FormGroup>
-                    <FormGroup className='col-lg-3'>
+                    <FormGroup className='col-lg-3' autoComplete={false}>
                         <Label for="endDate">Expected End Date</Label>
                         <Input type="date" name="endDate" id="endDate" placeholder="Date when the study started" value={this.state.endDate} onChange={this.handleInputChange}/>
                     </FormGroup>
                     </div>
                     <div className='row'>
-                        <FormGroup className='col-lg-6'>
+                        <FormGroup className='col-lg-6' autoComplete={false}>
                             <Label for='content'>Tasks completed this Month</Label>
                             <Input type="textarea" name="completedTasks" id="completedTasks" placeholder='Enter text in bullets' value={this.state.completedTasks} onChange={this.handleInputChange}/>
                         </FormGroup>
-                        <FormGroup className='col-lg-6'>
+                        <FormGroup className='col-lg-6' autoComplete={false}>
                             <Label for='content'>Tasks planned for next Month</Label>
                             <Input type="textarea" name="plannedTasks" id="plannedTasks" placeholder='Enter text in bullets' value={this.state.plannedTasks} onChange={this.handleInputChange}/>
                         </FormGroup>
                     </div>
-                    <FormGroup>
+                    <FormGroup autoComplete={false}>
                         <Label for="timeSpent">Hours spent by reseracher</Label>
                         <Input type='number' name="timeSpent" id="timeSpent" placeholder="(this week)" value={this.state.timeSpent} onChange={this.handleInputChange}/>
                     </FormGroup>
