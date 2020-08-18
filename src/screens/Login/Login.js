@@ -20,6 +20,7 @@ class Login extends Component {
     checkCreds = () => {
         if(this.state.username == this.state.actualUser && this.state.password == this.state.actualPass){
             auth.setLogin(() => {
+                localStorage.setItem("user",{username:this.state.actualUser, password:this.state.actualPass})
                 this.props.history.push("/home");
               });
             }
