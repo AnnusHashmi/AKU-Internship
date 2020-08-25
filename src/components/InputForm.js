@@ -9,18 +9,31 @@ class InputForm extends Component{
         super(props);
 
         this.state = {
-            month : '',
-            spName : '',
-            staffName : '',
-            studyName : '',
-            startDate : '',
-            endDate : '',
-            completedTasks : '',
-            plannedTasks : '', 
-            timeSpent : '',
-            email : '',
-            
-
+            PrincipalInvestigator: '',
+            GrantPreparation : '',
+            GrantCurrentStatus: '',
+            CoPrincipalInvestigator : '',
+            ProjectID  : '',
+            StudyTitle : '',
+            GrantingAgency : '',
+            FundType : '', 
+            DateOfSubmission : '',
+            TypeOfStudy : '',
+            collaborators: '',
+            DateOfResponse : '',
+            Rejection : '',
+            NoOfSubjects : '',
+            humanSubjects : '',
+            LocationOfstudy: '',
+            TenureOfGrant  :'',
+            Amount : '',
+            StartPeriod : '',
+            EndDate : '',
+            Status : '',
+            ResearchArea : '',
+            researchImpact : '',
+            Objective : '',
+            followUp : ''
         }
     }
 
@@ -60,58 +73,107 @@ class InputForm extends Component{
                 </FormGroup>
                     <h3 style={{paddingBottom : 20}}>Record entry</h3>
                     <FormGroup>
-                        <Label for="spName">Supervisor Name</Label>
-                        <Input type="text" name="spName" id="spName" placeholder="Enter the name" value={this.state.SPname} onChange={this.handleInputChange} />
-                    </FormGroup>
-                    <FormGroup autoComplete={false}>
-                        <Label for="staffName">Staff Name</Label>
-                        <Input type="text" name="staffName" id="staffName" placeholder="Enter the name" value={this.state.staffName} onChange={this.handleInputChange}/>
-                    </FormGroup>
-                    <FormGroup autoComplete={false}>
-                        <Label for="studyName">Study Name</Label>
-                        <Input type="text" name="studyName" id="studyName" placeholder="Enter the study name" value={this.state.studyName} onChange={this.handleInputChange}/>
+                        <Label for="spName">Principle Investigator</Label>
+                        <Input type="text" name="PrincipalInvestigator" id="PrincipalInvestigator" placeholder="Enter the name" value={this.state.PrincipalInvestigator} onChange={this.handleInputChange} />
                     </FormGroup>
                     <div className='row'>
-                    <FormGroup className='col-lg-3' autoComplete={false}>
-                        <Label for="startDate">Start Date</Label>
-                        <Input type="date" name="startDate" id="startDate" placeholder="Date when the study started" value={this.state.startDate} onChange={this.handleInputChange}/>
-                    </FormGroup>
-                    <FormGroup className='col-lg-6' autoComplete={false}>
-                        <Label for="exampleSelect">Select Month</Label>
-                        <Input type="select" name="month" id="month" value={this.state.month} onChange={this.handleInputChange}>
-                        <option>January</option>
-                        <option>Febuary</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option>May</option>
-                        <option>June</option>
-                        <option>July</option>
-                        <option>August</option>
-                        <option>September</option>
-                        <option>October</option>
-                        <option>November</option>
-                        <option>December</option>
+                    <FormGroup className='col-lg-6'>
+                        <Label> Grant Preparations </Label>
+                        <Input type="select" name="GrantPreparation" id="GrantPreparation" value={this.state.GrantPreparation} onChange={this.handleInputChange}>
+                        <option>preparation</option>
+                        <option> DRC Submission</option>
+                        <option> ERC Submission</option>
+                        <option> ERC Approval</option>
+                        <option> Submitted </option>
                         </Input>
                     </FormGroup>
-                    <FormGroup className='col-lg-3' autoComplete={false}>
-                        <Label for="endDate">Expected End Date</Label>
-                        <Input type="date" name="endDate" id="endDate" placeholder="Date when the study started" value={this.state.endDate} onChange={this.handleInputChange}/>
+                    <FormGroup className='col-lg-6'>
+                        <Label> Grant Preparations </Label>
+                        <Input type="select" name="GrantCurrentStatus" id="GrantCurrentStatus" value={this.state.GrantCurrentStatus} onChange={this.handleInputChange}>
+                            <option> Submited </option>
+                            <option> Approved </option>
+                            <option> Rejected </option>
+                        </Input>
                     </FormGroup>
                     </div>
+                    <FormGroup>
+                        <Label for="spName">Co Principle Investigator</Label>
+                        <Input type="text" name="CoPrincipalInvestigator" id="CoPrincipalInvestigator" placeholder="Enter the name" value={this.state.CoPrincipalInvestigator} onChange={this.handleInputChange} />
+                    </FormGroup>
                     <div className='row'>
-                        <FormGroup className='col-lg-6' autoComplete={false}>
-                            <Label for='content'>Tasks completed this Month</Label>
-                            <Input type="textarea" name="completedTasks" id="completedTasks" placeholder='Enter text in bullets' value={this.state.completedTasks} onChange={this.handleInputChange}/>
+                    <FormGroup className='col-lg-6'>
+                        <Label for="spName">Project ID/ Grant # / Budget Code </Label>
+                        <Input type="text" name="ProjectID" id="ProjectID" placeholder="Enter the ProjectID" value={this.state.ProjectID} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    <FormGroup className='col-lg-6'>
+                        <Label for="spName">Study Title /Title of Research Study</Label>
+                        <Input type="text" name="StudyTitle" id="StudyTitle" placeholder="Enter the StudyTitle" value={this.state.StudyTitle} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    </div>
+
+                    <div className='row'>
+                    <FormGroup className='col-lg-6'>
+                        <Label for="spName"> Granting Agency, Funding source </Label>
+                        <Input type="text" name="GrantingAgency" id="GrantingAgency" placeholder="Enter the GrantingAgency" value={this.state.GrantingAgency} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    <FormGroup className='col-lg-6'>
+                        <Label for="spName">Funded Local / Foreign</Label>
+                        <Input type="select" name="FundType" id="FundType" placeholder="Enter the FundType" value={this.state.FundType} onChange={this.handleInputChange} >
+                            <option> Local </option>
+                            <option> Forigen </option>
+                        </Input>
+                    </FormGroup>
+                    </div>
+
+                    <div className='row'>
+                        <FormGroup className='col-lg-6'>
+                            <Label for="spName"> Date of Submission </Label>
+                            <Input type="date" name="DateOfSubmission" id="DateOfSubmission" placeholder="Enter the DateOfSubmission" value={this.state.DateOfSubmission} onChange={this.handleInputChange} />
                         </FormGroup>
-                        <FormGroup className='col-lg-6' autoComplete={false}>
-                            <Label for='content'>Tasks planned for next Month</Label>
-                            <Input type="textarea" name="plannedTasks" id="plannedTasks" placeholder='Enter text in bullets' value={this.state.plannedTasks} onChange={this.handleInputChange}/>
+
+                        <FormGroup className='col-lg-6'>
+                            <Label for="spName"> Expected Date of Response after Grant Submitted  </Label>
+                            <Input type="date" name="DateOfResponse" id="DateOfResponse" placeholder="Enter the expected DateOfResponse" value={this.state.DateOfResponse} onChange={this.handleInputChange} />
                         </FormGroup>
                     </div>
-                    <FormGroup autoComplete={false}>
-                        <Label for="timeSpent">Hours spent by reseracher</Label>
-                        <Input type='number' name="timeSpent" id="timeSpent" placeholder="(this week)" value={this.state.timeSpent} onChange={this.handleInputChange}/>
+
+                    <div className='row'>
+                    <FormGroup className='col-lg-6'>
+                        <Label for="spName">Type of Study</Label>
+                        <Input type="text" name="TypeOfStudy" id="TypeOfStudy" placeholder="Enter the TypeOfStudy" value={this.state.TypeOfStudy} onChange={this.handleInputChange} />
                     </FormGroup>
+
+                    <FormGroup className='col-lg-6'>
+                        <Label for="spName">Other Department as collaborators </Label>
+                        <Input type="text" name="collaborators" id="collaborators" placeholder="Enter the collaborators" value={this.state.collaborators} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    </div>
+                    
+                    <FormGroup>
+                        <Label for="spName">Reason for Rejection (If any) </Label>
+                        <Input type="text" name="Rejection" id="Rejection" placeholder="Enter the reason for Rejection" value={this.state.Rejection} onChange={this.handleInputChange} />
+                    </FormGroup>
+
+                    <div className='row' style={{paddingTop : '20px'}}>
+                    <FormGroup className='col-lg-4'>
+                        <Label for="spName">No. of Subjects</Label>
+                        <Input type="number" name="NoOfSubjects" id="NoOfSubjects" placeholder="Enter the NoOfSubjects" value={this.state.NoOfSubjects} onChange={this.handleInputChange} />
+                    </FormGroup>
+
+                    <FormGroup className='col-lg-4'>
+                        <Label for="spName"> Will AKUH patients be used as human subjects? (Yes/No)</Label>
+                        <Input type="text" name="humanSubjects" id="humanSubjects"  value={this.state.humanSubjects} onChange={this.handleInputChange} >
+                            <option>YES</option>
+                            <option>NO</option>
+                        </Input>
+                    </FormGroup>
+
+                    <FormGroup className='col-lg-4'>
+                        <Label for="spName">Location of study (Stadium Rd, secondary hospital, field site etc. (mention all if more than 1)</Label>
+                        <Input type="text" name="LocationOfstudy" id="LocationOfstudy" placeholder="Enter the LocationOfstudy" value={this.state.LocationOfstudy} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    </div>
+
 
                     <Button color='success' size="lg" type='submit'>Submit</Button>
                 </Form>

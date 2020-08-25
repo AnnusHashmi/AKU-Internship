@@ -71,13 +71,34 @@ class TableList extends Component{
                     <thead>
                         <tr>
                             
-                            <th>Supervisor Name</th>
-                            <th>Staff Name</th>
-                            <th>Topic</th>
-                            <th>Start/End Date</th>
-                            <th>Completed Tasks</th>
-                            <th>Planned Tasks</th>
-                            <th>HoursSpent / week</th>
+                            <th>Principal Investigator</th>
+                            <th>Grant Preparation</th>
+                            <th>Grant Current Statu</th>
+                            <th>Co-Principal Investigator</th>
+                            <th>Project ID/ Grant # / Budget Code </th>
+                            <th>Study Title</th>
+                            <th>Granting Agency</th>
+                            <th>Funded Local / Foreign</th>
+                            <th>Date of Submission</th>
+                            <th>Type of study</th>
+                            <th>Other Department as collaborators </th>
+                            <th>Expected Date of Response after Grant Submitted </th>
+                            <th>Reason in case of Rejection</th>
+                            <th>No. of subjects</th>
+                            <th>Will AKUH patients be used as human subjects?</th>
+                            <th>Location of study</th>
+                            <th>Tenure of Grant</th>
+                            <th>Amount, Pak Rs/ US$</th>
+                            <th>Start period</th>
+                            <th>Expected/ Actual End date</th>
+                            <th>Ongoing (O) /Concluded(C) /Not Started (N)</th>
+                            <th>Research Area/Theme/Sub-Theme</th>
+                            <th>Type of research Impact</th>
+                            <th>Brief Description and Objective</th>
+                            <th>Staff/ faculty to take a follow up </th>
+
+                           
+
                         
                         </tr>
                     </thead>
