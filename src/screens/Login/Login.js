@@ -4,7 +4,7 @@ import {  Input, Form, FormGroup, Label, Button } from 'reactstrap'
 import './Login.css'
 import auth from '../../components/auth';
 import {withRouter} from 'react-router-dom'
-import FirebaseDB from '../../firebase';
+
 
 class Login extends Component {
 

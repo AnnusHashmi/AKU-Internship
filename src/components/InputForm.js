@@ -30,9 +30,8 @@ class InputForm extends Component{
             StartPeriod : '',
             EndDate : '',
             Status : '',
-            ResearchArea : '',
+            theme : '',
             researchImpact : '',
-            Objective : '',
             followUp : ''
         }
     }
@@ -169,10 +168,66 @@ class InputForm extends Component{
                     </FormGroup>
 
                     <FormGroup className='col-lg-4'>
-                        <Label for="spName">Location of study (Stadium Rd, secondary hospital, field site etc. (mention all if more than 1)</Label>
+                        <Label for="LocationOfstudy">Location of study (Stadium Rd, secondary hospital, field site etc. (mention all if more than 1)</Label>
                         <Input type="text" name="LocationOfstudy" id="LocationOfstudy" placeholder="Enter the LocationOfstudy" value={this.state.LocationOfstudy} onChange={this.handleInputChange} />
                     </FormGroup>
                     </div>
+
+                    <FormGroup>
+                        <Label for="TenureOfGrant">Tenure of Grant</Label>
+                        <Input type="text" name="TenureOfGrant" id="TenureOfGrant" placeholder="Enter the TenureOfGrant" value={this.state.TenureOfGrant} onChange={this.handleInputChange} />
+                    </FormGroup>
+
+                    <div className='row'>
+                        <div className='col-lg-4'>
+                            <FormGroup>
+                                <Label for="Amount">Amount</Label>
+                                <Input type="text" name="Amount" id="Amount" placeholder="Enter the Amount" value={this.state.Amount} onChange={this.handleInputChange} />
+                            </FormGroup>
+                        </div>
+
+                        <div className='col-lg-4'>
+                            <FormGroup>
+                                <Label for="StartPeriod">Start Period</Label>
+                                <Input type="date" name="StartPeriod" id="StartPeriod" placeholder="Enter the StartPeriod" value={this.state.StartPeriod} onChange={this.handleInputChange} />
+                            </FormGroup>
+                        </div>
+
+                        <div className='col-lg-4'>
+                            <FormGroup>
+                                <Label for="EndDate">Expected/ Actual End date</Label>
+                                <Input type="date" name="EndDate" id="EndDate" placeholder="Enter the EndDate" value={this.state.EndDate} onChange={this.handleInputChange} />
+                            </FormGroup>
+                        </div>
+                    </div>
+
+                    <FormGroup>
+                            <Label for="theme">Research Area/Theme/Sub-Theme</Label>
+                            <Input type="text" name="theme" id="theme" placeholder="Enter the theme" value={this.state.theme} onChange={this.handleInputChange} />
+                    </FormGroup>
+
+                    <FormGroup>
+                            <Label for="researchImpact">Type of research Impact (Area of Specialty) </Label>
+                            <Input type="researchImpact" name="researchImpact" id="researchImpact" placeholder="Enter the researchImpact" value={this.state.researchImpact} onChange={this.handleInputChange} />
+                    </FormGroup>
+
+                    <div>
+                        <FormGroup>
+                                <Label for="Status"> Phase </Label>
+                                <Input type="Status" name="Status" id="Status" placeholder="Enter the Status" value={this.state.Status} onChange={this.handleInputChange}>
+                                    <option>Ongoing</option>
+                                    <option>Concluded</option>
+                                    <option>Not Started</option>
+                                </Input>
+                        </FormGroup>
+
+                        <FormGroup>
+                                <Label for="followUp"> Staff/ faculty to take a follow up  </Label>
+                                <Input type="followUp" name="followUp" id="followUp" placeholder="Enter the followUp" value={this.state.followUp} onChange={this.handleInputChange} />
+                        </FormGroup> 
+                    </div>
+                    
+
 
 
                     <Button color='success' size="lg" type='submit'>Submit</Button>
