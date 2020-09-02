@@ -73,7 +73,7 @@ class TableList extends Component{
                             
                             <th>Principal Investigator</th>
                             <th>Grant Preparation</th>
-                            <th>Grant Current Statu</th>
+                            <th>Grant Current Status</th>
                             <th>Co-Principal Investigator</th>
                             <th>Project ID/ Grant # / Budget Code </th>
                             <th>Study Title</th>
@@ -91,10 +91,8 @@ class TableList extends Component{
                             <th>Amount, Pak Rs/ US$</th>
                             <th>Start period</th>
                             <th>Expected/ Actual End date</th>
-                            <th>Ongoing (O) /Concluded(C) /Not Started (N)</th>
                             <th>Research Area/Theme/Sub-Theme</th>
                             <th>Type of research Impact</th>
-                            <th>Brief Description and Objective</th>
                             <th>Staff/ faculty to take a follow up </th>
 
                            
@@ -108,13 +106,30 @@ class TableList extends Component{
                             filteredArray.map((record) => {
                                 return(
                                     <tr>
-                                        <td> {record.spName} </td>
-                                        <td> {record.staffName} </td>
-                                        <td> {record.studyName} </td>
-                                        <td> {record.startDate}/{record.endDate} </td>
-                                        <td> {record.completedTasks} </td>
-                                        <td> {record.plannedTasks} </td>
-                                        <td> {record.timeSpent} </td> 
+                                        <td> {record.PrincipalInvestigator} </td>
+                                        <td> {record.GrantPreparation} </td>
+                                        <td> {record.GrantCurrentStatus} </td>
+                                        <td> {record.CoPrincipalInvestigator}/{record.endDate} </td>
+                                        <td> {record.ProjectID} </td>
+                                        <td> {record.StudyTitle} </td>
+                                        <td> {record.GrantingAgency} </td> 
+                                        <td> {record.GrantingAgency} </td> 
+                                        <td> {record.FundType} </td> 
+                                        <td> {record.DateOfSubmission} </td> 
+                                        <td> {record.TypeOfStudy} </td> 
+                                        <td> {record.collaborators} </td> 
+                                        <td> {record.DateOfResponse} </td> 
+                                        <td> {record.Rejection} </td> 
+                                        <td> {record.NoOfSubjects} </td> 
+                                        <td> {record.humanSubjects} </td> 
+                                        <td> {record.TenureOfGrant} </td>
+                                        <td> {record.Amount} </td> 
+                                        <td> {record.StartPeriod} </td> 
+                                        <td> {record.Status} </td>  
+                                        <td> {record.theme} </td>  
+                                        <td> {record.researchImpact} </td>  
+                                        <td> {record.followUp} </td>  
+
                                     </tr>
                                 )
                             })

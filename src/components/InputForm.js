@@ -9,6 +9,7 @@ class InputForm extends Component{
         super(props);
 
         this.state = {
+            month : '',
             PrincipalInvestigator: '',
             GrantPreparation : '',
             GrantCurrentStatus: '',
@@ -69,6 +70,23 @@ class InputForm extends Component{
                 <FormGroup autoComplete="false" style={{paddingBottom : "70px"}}>
                     <Label for="spName">User entering the record: Enter your mail</Label>
                     <Input type="email" name="email" id="email" placeholder="email" value={this.state.email} onChange={this.handleInputChange} />
+                </FormGroup>
+                <FormGroup autoComplete="false" style={{paddingBottom : "30px"}}>
+                    <Label for="spName">Choose the month of Entry</Label>
+                    <Input type="select" name="month" id="month" value={this.state.month} onChange={this.handleInputChange}>
+                        <option>January</option>
+                        <option> Febuary </option>
+                        <option> March </option>
+                        <option> April </option>
+                        <option> May </option>
+                        <option> June </option>
+                        <option> July </option>
+                        <option> August </option>
+                        <option> September </option>
+                        <option> Octuber </option>
+                        <option> November </option>
+                        <option> December </option>
+                        </Input>
                 </FormGroup>
                     <h3 style={{paddingBottom : 20}}>Record entry</h3>
                     <FormGroup>

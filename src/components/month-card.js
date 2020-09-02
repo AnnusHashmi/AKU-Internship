@@ -9,7 +9,11 @@ import './monthCard.css';
 
 
 const MonthCard = (prop) => {
-    const filterRecords = prop.records.filter(record => record.month.toLowerCase().includes(prop.month.toLocaleLowerCase()));
+    const filterRecords = prop.records.filter(record => record.month.toLowerCase().includes(prop.month.toLowerCase()));
+
+    const filterPublicationRecords = prop.publicationRecords.filter(publicationRecord => publicationRecord.publicationMonths.toLowerCase().includes(prop.month.toLowerCase()));
+
+    const filterCommunicationRecords = prop.communicationRecords.filter(communicationRecord => communicationRecord.month.toLowerCase().includes(prop.month.toLowerCase()));
 
     const [state, toggle] = useState(true)
     const { x } = useSpring({ from: { x: 0 }, x: state ? 1 : 0, config: { duration: 1000 } })
@@ -19,7 +23,7 @@ const MonthCard = (prop) => {
                 <Card className='card'>
                     <CardHeader> {prop.month} </CardHeader>
                     <CardBody>
-                <CardTitle>Total numebr of Records this month : {filterRecords.length}</CardTitle>
+                <CardTitle>Total numebr of Records this month : {filterRecords.length + filterPublicationRecords.length + filterCommunicationRecords.length}</CardTitle>
                         <CardText>
                             <div onClick={() => toggle(!state)}>
                                 <animated.div
@@ -32,14 +36,34 @@ const MonthCard = (prop) => {
                                   })
                                   .interpolate(x => `scale(${x})`)
                               }}>
-                                    <Button color="success">
+                                    <Button color="success" className='btnSpacing'>
                                         <Link to={{
                                             pathname: `table`,
                                             state: filterRecords
                                         }} style={{textDecoration:"none", color:"white"}}>
-                                            Show Records
+                                            Show Manuscript records
                                         </Link>    
                                     </Button>
+
+                                    <Button color="success" className='btnSpacing'>
+                                        <Link to={{
+                                            pathname: `pubTable`,
+                                            state: filterPublicationRecords
+                                        }} style={{textDecoration:"none", color:"white"}}>
+                                            Show Publication records
+                                        </Link>    
+                                    </Button>
+
+                                    <Button color="success" className='btnSpacing'>
+                                        <Link to={{
+                                            pathname: `comTable`,
+                                            state: filterCommunicationRecords
+                                        }} style={{textDecoration:"none", color:"white"}}>
+                                            Show Conference records
+                                        </Link>    
+                                    </Button>
+
+                                   
                                 </animated.div>
                             </div>
                             

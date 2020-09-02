@@ -24,6 +24,8 @@ class HomePage extends Component{
     
         this.state = {
           records: [],
+          publicationRecords : [],
+          communicationRecords : [],
           modal:true,
           email : '',
           modal : false,
@@ -46,6 +48,24 @@ class HomePage extends Component{
             })
           }
         });
+
+        FirebaseDB.child('publicationRecords').on('value' , snapshot => {
+            if(snapshot.val() != null){
+              this.setState({
+                ...this.state,
+                publicationRecords : snapshot.val()
+              })
+            }
+          });
+
+          FirebaseDB.child('communicationRecords').on('value' , snapshot => {
+            if(snapshot.val() != null){
+              this.setState({
+                ...this.state,
+                communicationRecords : snapshot.val()
+              })
+            }
+          }); 
         
       };
       toggle = () => {
@@ -56,6 +76,10 @@ class HomePage extends Component{
 
         {
             var arrayOfRecords = Object.values(this.state.records);
+
+            var arrayOfPublicaitons = Object.values(this.state.publicationRecords)
+            
+            var arrayOfcommunications = Object.values(this.state.communicationRecords)
         }
     
         return(
@@ -74,6 +98,14 @@ class HomePage extends Component{
 
                         <div className='bottom'>
                             <Button color="success" size="lg" block className='bottom' onClick={() => this.props.history.push("/inputdata")}>Add ManuScript and Grants</Button>
+                        </div>
+
+                        <div className='bottom'>
+                            <Button color="success" size="lg" block onClick={() => this.props.history.push("/inputPublicationData")}>Add Publication Data</Button>
+                        </div>
+
+                        <div className='bottom'>
+                            <Button color="success" size="lg" block  onClick={() => this.props.history.push("/inputConferenceData")}>Add Conference Data</Button>
                         </div>
 
                     </div>
@@ -101,31 +133,31 @@ class HomePage extends Component{
 
                         <div className='row'>
                             <div className='container'>
-                                <HeaderLine number={arrayOfRecords.length}/>
+                                <HeaderLine number={arrayOfRecords.length + arrayOfcommunications.length + arrayOfPublicaitons.length}/>
                            </div>
 
                             <div className='col-lg-3'>
-                                <MonthCard month="January" records={arrayOfRecords} />
-                                <MonthCard month="May" records={arrayOfRecords}/>
-                                <MonthCard month="September" records={arrayOfRecords}/>
+                                <MonthCard month="January" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
+                                <MonthCard month="May" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
+                                <MonthCard month="September" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
                             </div>
     
                             <div className='col-lg-3'>
-                                <MonthCard month="Febuary" records={arrayOfRecords}/>
-                                <MonthCard month="June" records={arrayOfRecords}/>
-                                <MonthCard month="Octuber" records={arrayOfRecords}/>
+                                <MonthCard month="Febuary" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
+                                <MonthCard month="June" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
+                                <MonthCard month="Octuber" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
                             </div>
     
                             <div className='col-lg-3'>
-                                <MonthCard month="March" records={arrayOfRecords}/>
-                                <MonthCard month="July" records={arrayOfRecords}/>
-                                <MonthCard month="November"records={arrayOfRecords}/>
+                                <MonthCard month="March" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
+                                <MonthCard month="July" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
+                                <MonthCard month="November"records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
                             </div>
     
                             <div className='col-lg-3'>
-                                <MonthCard month="April" records={arrayOfRecords}/>
-                                <MonthCard month="August" records={arrayOfRecords}/>
-                                <MonthCard month="December" records={arrayOfRecords}/>
+                                <MonthCard month="April" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
+                                <MonthCard month="August" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
+                                <MonthCard month="December" records={arrayOfRecords} publicationRecords={arrayOfPublicaitons} communicationRecords={arrayOfcommunications}/>
                             </div>
                         </div>
                     </div>
