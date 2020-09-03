@@ -10,12 +10,12 @@ class TableList extends Component{
 
         this.state = {
             searchName : '',
-            staffName : '',
-            studyName : '',
+            searchProjectId : '',
+            searchStudyTitle : '',
 
             selectSearchName : false,
-            selectStaffName : false,
-            selectStudyName : false
+            selectprojectId : false,
+            selectStudyTitle : false
         }
     }
 
@@ -24,13 +24,13 @@ class TableList extends Component{
         let filteredArray = this.props.location.state
         
         if(this.state.selectSearchName === true){
-            filteredArray = this.props.location.state.filter(record => record.spName.toLowerCase().includes(this.state.searchName.toLowerCase()));
+            filteredArray = this.props.location.state.filter(record => record.PrincipalInvestigator.toLowerCase().includes(this.state.searchName.toLowerCase()));
         }
-        else if(this.state.selectStaffName === true){
-             filteredArray = this.props.location.state.filter(record => record.staffName.toLowerCase().includes(this.state.staffName.toLowerCase()));
+        else if(this.state.selectprojectId === true){
+             filteredArray = this.props.location.state.filter(record => record.ProjectID.toLowerCase().includes(this.state.searchProjectId.toLowerCase()));
         }
         else if(this.state.selectStudyName === true){
-             filteredArray = this.props.location.state.filter(record => record.studyName.toLowerCase().includes(this.state.studyName.toLowerCase()));
+             filteredArray = this.props.location.state.filter(record => record.StudyTitle.toLowerCase().includes(this.state.searchStudyTitle.toLowerCase()));
         }
         
         {console.log("this is the array to render: ", filteredArray)}
@@ -51,15 +51,15 @@ class TableList extends Component{
 
                 <div className='row'>
                     <div className='col-lg-4'>     
-                        <Input className='input-gap' name="searchName" placeholder="Enter Supervisor Name to Filter" onChange={handleChange} onClick={()=>{this.setState({selectSearchName : true , selectStaffName: false , selectStudyName : false})}}/>
+                        <Input className='input-gap' name="searchName" placeholder="Enter Principle Investigator to Filter" onChange={handleChange} onClick={()=>{this.setState({selectSearchName : true , selectprojectId: false , selectStudyTitle : false})}}/>
                     </div>
 
                     <div className='col-lg-4'>     
-                        <Input className='input-gap' name="staffName" placeholder="Enter Staff Name to Filter" onChange={handleChange} onClick={()=>{this.setState({selectStaffName : true , selectSearchName : false , selectStudyName : false })}}/>
+                        <Input className='input-gap' name="projectId" placeholder="Enter projectId to Filter" onChange={handleChange} onClick={()=>{this.setState({selectprojectId : true , selectSearchName : false , selectStudyTitle : false })}}/>
                     </div>
 
                     <div className='col-lg-4'>     
-                        <Input className='input-gap' name="studyName" placeholder="Enter Topic Name to Filter" onChange={handleChange} onClick={()=>{this.setState({selectStudyName : true , selectStaffName : false, selectSearchName : false})}}/>
+                        <Input className='input-gap' name="studyName" placeholder="Enter Topic Name to Filter" onChange={handleChange} onClick={()=>{this.setState({selectStudyTitle : true , selectprojectId : false, selectSearchName : false})}}/>
                     </div>
                 </div>
 
@@ -94,8 +94,6 @@ class TableList extends Component{
                             <th>Research Area/Theme/Sub-Theme</th>
                             <th>Type of research Impact</th>
                             <th>Staff/ faculty to take a follow up </th>
-
-                           
 
                         
                         </tr>
